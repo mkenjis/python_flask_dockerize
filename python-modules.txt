@@ -9,9 +9,11 @@ mkdir templates
 
 docker image pull mysql:5.6
 
-docker container run -d -p 5000:5000 --name mysql1 -v $(pwd)/data-dir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 mysql:5.6
+docker container run -d --name mysql1 -v $(pwd)/data-dir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 mysql:5.6
 
 docker container exec -it mysql1 bash
+
+mysql -uroot -p
 
 create database roytuts;
 
@@ -25,3 +27,7 @@ create table tbl_user (
    constraint key1 primary key (user_id));
    
 GRANT ALL PRIVILEGES ON roytuts.* TO 'teste'@'%' IDENTIFIED BY 'teste123';
+
+----------------------
+
+docker stack deploy --compose-file docker-compose-swarm.yml stackdemo
