@@ -1,0 +1,24 @@
+pip install flask
+pip install flask-mysql
+pip install flask_table
+
+mkdir user_crud
+cd user_crud
+mkdir templates
+
+
+docker image pull mysql:5.6
+
+
+create database roytuts;
+
+use roytuts;
+
+create table tbl_user (
+   user_id int(11) auto_increment,
+   user_name varchar(30),
+   user_email varchar(50),
+   user_password varchar(100),
+   constraint key1 primary key (user_id));
+   
+GRANT ALL PRIVILEGES ON roytuts.* TO 'teste'@'%' IDENTIFIED BY 'teste123';
