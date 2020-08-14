@@ -1,11 +1,19 @@
 version: '3.1'
 
 services:
+  proxy:
+    image: nginx
+    ports:
+      - '443:443'
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - net1
   pyapp:
     image: myapp:latest
     build: .
-    ports:
-      - '5000:5000'
+#    ports:
+#      - '5000:5000'
     networks:
       - net1
     depends_on:
