@@ -1,18 +1,22 @@
 version: '3.1'
 
+# docker image tag custom-nginx mkenjis/custom-nginx
+# docker image tag myapp        mkenjis/myapp
+# docker login
+# docker push mkenjis/custom-nginx
+# docker push mkenjis/myapp
+# docker image rm -f mkenjis/custom-nginx
+# docker image rm -f mkenjis/myapp
+
 services:
   proxy:
-    image: custom-nginx
-    build: 
-      context: .
-      dockerfile: Dockerfile-nginx
+    image: mkenjis/custom-nginx
     ports:
       - '443:443'
     networks:
       - net1
   pyapp:
-    image: myapp:latest
-    build: .
+    image: mkenjis/myapp
 #    ports:
 #      - '5000:5000'
     networks:
@@ -30,4 +34,4 @@ services:
 
 networks:
   net1:
-    driver: bridge
+    driver: overlay
